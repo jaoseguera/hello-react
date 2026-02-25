@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - npm ci
+  build:
+    commands:
+      - npm run build
+  post_build:
+    commands:
+      - aws s3 sync out/ s3://hello-react-static-site-999777888 --delete
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: out
