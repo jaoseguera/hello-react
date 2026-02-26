@@ -12,6 +12,7 @@ phases:
   post_build:
     commands:
       - aws s3 sync out/ s3://hello-react-static-site-999777888 --delete
+      - aws cloudfront create-invalidation --distribution-id EB133VQLGIEMD --paths "/*"
 
 artifacts:
   files:
